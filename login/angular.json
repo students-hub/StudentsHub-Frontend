@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "StudentsHub-Frontend": {
+    "StudentsHub-Login": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/StudentsHub-Frontend",
+            "outputPath": "dist/StudentsHub-Login",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "StudentsHub-Frontend:build"
+            "browserTarget": "StudentsHub-Login:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "StudentsHub-Frontend:build:production"
+              "browserTarget": "StudentsHub-Login:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "StudentsHub-Frontend:build"
+            "browserTarget": "StudentsHub-Login:build"
           }
         },
         "test": {
@@ -114,15 +114,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "StudentsHub-Frontend:serve"
+            "devServerTarget": "StudentsHub-Login:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "StudentsHub-Frontend:serve:production"
+              "devServerTarget": "StudentsHub-Login:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "StudentsHub-Frontend"
+    }
+  },
+  "defaultProject": "StudentsHub-Login",
+  "cli": {
+    "analytics": false
+  }
 }
