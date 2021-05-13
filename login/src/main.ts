@@ -1,8 +1,20 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { registerMicroApps, start } from 'qiankun';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+
+registerMicroApps([
+  {
+    name: 'vue3 app for storage',
+    entry: '//localhost:3000',
+    container: '#vue',
+    activeRule: '/vue'
+  },
+]);
+
+start({prefetch: true});
 
 if (environment.production) {
   enableProdMode();

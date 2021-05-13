@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NzButtonModule } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
@@ -8,7 +9,8 @@ import { CoreModule } from './core/core.module';
     AppComponent
   ],
   imports: [
-    CoreModule
+    CoreModule,
+    NzButtonModule,
   ],
   bootstrap: [AppComponent]
 })

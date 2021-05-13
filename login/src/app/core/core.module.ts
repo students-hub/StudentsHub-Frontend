@@ -8,6 +8,7 @@ import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { ShareModule } from '../share/share.module';
+import { PagesModule } from '../pages/pages.module';
 registerLocaleData(zh);
 
 @NgModule({
@@ -18,6 +19,7 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule,
     ShareModule,
+    PagesModule
   ],
   exports: [
     ShareModule,
