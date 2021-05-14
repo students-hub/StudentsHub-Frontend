@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <h1 class="title">Students Hub</h1>
+    <p class="subtitle">管理你课程内容的网站</p>
+  </div>
+  
+  <div class="login">
+    <form nz-form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="prefixTemplateUser">
+            <input type="text" nz-input placeholder="请输入用户名" formControlName="username">
+          </nz-input-group>
+          <ng-template #prefixTemplateUser>
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item>
+        <nz-form-control nzErrorTip="请输入正确的密码">
+          <nz-input-group [nzPrefix]="prefixTemplateLock" [nzSuffix]="prefixTemplateVisible">
+            <input [type]="passwordVisible? 'text' : 'password'" nz-input placeholder="请输入密码" formControlName="password">
+          </nz-input-group>
+          <ng-template #prefixTemplateLock>
+            <i nz-icon nzType="lock" nzTheme="outline"></i>
+          </ng-template>
+          <ng-template #prefixTemplateVisible>
+            <i 
+              nz-icon
+              class="passwordVisible"
+              [nzType]="passwordVisible? 'eye-invisible': 'eye'" 
+              nzTheme="outline"
+              (click)="passwordVisible = !passwordVisible"
+            ></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item>
+        <nz-form-control>
+          <div class="tools">
+            <label 
+              nz-checkbox 
+              class="remember" 
+              formControlName="isRemember" 
+              (ngModelChange)="onCheckRemember()"
+            >
+              <span>自动登录</span>
+            </label>
+            <a class="forget">忘记密码？</a>
+          </div>
+          <div class="button-wrapper">
+            <button type="submit" nz-button class="login-form-button" nzType="primary" nzBlock>登陆</button>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  
+  <div class="footer">
+    <a href="//github.com/students-hub" target="_blank" style="color: rgba(0,0,0,.65);">
+      <i nz-icon nzType="github" nzTheme="outline"></i>
+    </a>
+    <p class="middle">Powered By Qiankun Framework</p>
+    <p>© 2021 students-hub team</p>
+  </div>
+</div>

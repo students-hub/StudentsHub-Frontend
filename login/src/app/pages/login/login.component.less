@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100vh;
+
+  .header {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+  
+    .title, .subtitle {
+      text-align: center;
+    }
+  }
+  
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  
+    input {
+      width: 290px;
+      height: 25px;
+      padding: 6.5px;
+    }
+
+    .passwordVisible {
+      cursor: pointer;
+    }
+  
+    .remember {
+      padding-bottom: 15px;
+    }
+  
+    .forget {
+      float: right;
+    }
+  
+    button {
+      height: 40px;
+    }
+  }
+  
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: auto;
+  
+    .middle {
+      margin-top: 8px;
+      margin-bottom: 3px;
+    }
+  }
+}
