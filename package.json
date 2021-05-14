@@ -1,0 +1,24 @@
+{
+  "name": "studentshub-frontend",
+  "version": "1.0.0",
+  "description": "Students Hub fronend project.",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/students-hub/StudentsHub-Frontend.git"
+  },
+  "author": "students-hub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/students-hub/StudentsHub-Frontend/issues"
+  },
+  "homepage": "https://github.com/students-hub/StudentsHub-Frontend#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "husky": "^6.0.0"
+  }
+}
