@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmptyComponent } from './empty/empty.component';
 import { LoginComponent } from './login/login.component';
 import { NzButtonModule, NzCheckboxModule, NzFormModule, NzIconModule, NzInputModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserOutline, LockOutline, EyeOutline, EyeInvisibleOutline, GithubOutline } from '@ant-design/icons-angular/icons';
+import { VueComponent } from './micro/vue/vue.component';
 
 
 @NgModule({
   declarations: [
-    EmptyComponent, 
     LoginComponent,
+    VueComponent,
   ],
   imports: [
     CommonModule,    
@@ -27,8 +27,8 @@ import { UserOutline, LockOutline, EyeOutline, EyeInvisibleOutline, GithubOutlin
     FormsModule,
   ],
   exports: [
-    EmptyComponent,
     LoginComponent,
+    VueComponent,
   ]
 })
 export class PagesModule { }
