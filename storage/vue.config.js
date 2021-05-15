@@ -1,16 +1,17 @@
-import { name } from './package';
-
-export const devServer = {
-  port: 3000,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
+module.exports = {
+  devServer: {
+    port: 3000,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
-};
-
-export const configureWebpack = {
-  output: {
-    library: `${name}-[name]`,
-    libraryTarget: 'umd',
-    jsonpFunction: `webpackJsonp_${name}`,
+  configureWebpack: {
+    output: {
+      library: `storage_vue`,
+      libraryTarget: 'umd',
+      jsonpFunction: `webpackJsonp_storage_vue`,
+    },
   },
+  publicPath: '/child/vue/',
+  outputDir: 'dist/vue/'
 };
