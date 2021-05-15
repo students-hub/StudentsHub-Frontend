@@ -5,9 +5,10 @@
   "scripts": {
     "prepare": "husky install",
     "predev": "npm install --dev && cd login && npm install --dev && cd ../ && cd storage && npm install --dev && cd ../",
+    "dev": "mkdir dist && mkdir dist\\child && cd login && npm run dev && cd ../storage && npm run build",
+    "serve": "echo \"In order to better watch the compiler's output, you should run 'npm run serve' in each micro application.\"",
     "prebuild": "cd login && npm install && cd ../ && cd storage && npm install && cd ../",
-    "build": "mkdir dist && cd login && npm run build && cd ../",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mkdir dist && mkdir dist/child && cd login && npm run build && cd ../storage && npm run build"
   },
   "repository": {
     "type": "git",

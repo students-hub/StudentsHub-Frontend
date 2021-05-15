@@ -8,7 +8,7 @@ import { environment } from './environments/environment';
 registerMicroApps([
   {
     name: 'vue3 app for storage',
-    entry: '//localhost:3000',
+    entry: environment.production? '/child/vue/' : '//localhost:3000/child/vue/',
     container: '#vue',
     activeRule: '/vue'
   },
