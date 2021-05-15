@@ -7,8 +7,8 @@ import { VueComponent } from './pages/micro/vue/vue.component';
 const routes: Routes = [
   { path: 'vue', component: VueComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
