@@ -1,7 +1,17 @@
 version: 2
 updates:
   - package-ecosystem: 'npm'
+    directory: '/'
     target-branch: 'main'
-    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/login'
+    target-branch: 'main'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/storage'
+    target-branch: 'main'
     schedule:
       interval: 'daily'
