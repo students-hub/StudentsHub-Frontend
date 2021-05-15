@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-vue',
-  template: '<div id="vue"></div>',
-  styleUrls: ['./vue.component.less']
+  template: '<div id="vue"></div>'
 })
 export class VueComponent implements OnInit {
 
