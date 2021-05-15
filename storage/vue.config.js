@@ -12,6 +12,6 @@ module.exports = {
       jsonpFunction: `webpackJsonp_storage_vue`,
     },
   },
-  publicPath: '/child/vue/',
+  publicPath: process.env.NODE_ENV == 'production'? '/StudentsHub-Frontend/child/vue/' : '/child/vue/',
   outputDir: 'dist/vue/'
 };
