@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --optimization --progress --extractCss --deploy-url=/StudentsHub-Frontend/ && mv dist/* ../dist/",
+    "build": "ng build --prod --optimization --progress --extractCss && mv dist/* ../dist/",
     "dev": "ng build --prod --optimization --progress --extractCss && mv dist/* ../dist/",
     "test": "ng test",
     "lint": "ng lint",
