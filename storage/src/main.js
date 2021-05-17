@@ -29,12 +29,13 @@ export async function bootstrap() {
   console.log('[vue] vue app bootstraped');
 }
 export async function mount(props) {
-  console.log('[vue] props from main framework', props);
+  console.log('[vue] vue app mount');
   render(props);
 }
 export async function unmount() {
+  console.log('[vue] vue app unmount');
   instance.$destroy();
-  instance.$el.innerHTML = '';
-  instance = null;
-  router = null;
+  // instance.$el.innerHTML = '';
+  // instance = null;
+  // router = null;
 }
