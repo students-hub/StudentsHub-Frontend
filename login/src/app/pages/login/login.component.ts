@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent {
   formModel: FormGroup;
   isRemember: AbstractControl;
   passwordVisible: boolean = false;
@@ -26,14 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isRemember = this.formModel.controls["isRemember"];
   }
 
-  ngOnInit(): void {
-    console.log("init");
-  }
-
-  ngOnDestroy(): void {
-    console.log("destroy");
-  }
-
   onCheckRemember(): void {
     console.log(this.isRemember.value);
   }
@@ -41,7 +33,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     console.log(this.formModel.value);
     this.zone.run(() => this.router.navigateByUrl('/vue'));
-    // this.router.navigateByUrl('/vue')
   }
 
 }
