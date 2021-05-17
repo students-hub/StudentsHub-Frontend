@@ -52,5 +52,5 @@ jobs:
           destination-github-username: 'students-hub'
           destination-repository-name: 'students-hub.github.io'
           user-email: 2431297348@qq.com
-          target-branch: main
+          target-branch: gh-pages
 
