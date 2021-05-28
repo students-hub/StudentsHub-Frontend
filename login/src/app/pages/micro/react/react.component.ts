@@ -3,8 +3,8 @@ import { loadMicroApp } from 'qiankun';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-react',
-  template: '<div id="react"></div>'
+  selector: 'app-vue',
+  template: '<div id="vue"></div>'
 })
 export class VueComponent implements OnInit, OnDestroy {
   microApp = null;
@@ -12,9 +12,9 @@ export class VueComponent implements OnInit, OnDestroy {
   constructor(private zone: NgZone) {
     this.zone.run(() => {
       this.microApp = loadMicroApp({
-        name: 'react app for dashboard',
-        entry: environment.production? '/child/react/' : '//localhost:3000/child/react/',
-        container: '#react',
+        name: 'vue3 app for storage',
+        entry: environment.production? '/child/vue/' : '//localhost:3000/child/vue/',
+        container: '#vue',
       });
     })
   }
