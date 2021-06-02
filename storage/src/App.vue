@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Filesystem />
+    <Storage />
   </div>
 </template>
 
 <script>
-import Filesystem from './pages/Filesystem.vue'
+import Storage from './pages/Storage.vue'
 
 export default {
   name: 'App',
   components: {
-    Filesystem,
+    Storage,
   }
 }
 </script>

@@ -1,78 +1,42 @@
 <template>
-  <el-container class="container">
-    <el-header class="header" height="100px"></el-header>
-    <el-container>
-      <el-aside class="aside" width="200px">
-        <el-menu 
-          default-active="2"
-          @select="handleSelect"
-        >
-          <el-menu-item index="pdf">
-            <i class="el-icon-notebook-2" />
-            <span>参考书PDF</span>
-          </el-menu-item>
-          <el-menu-item index="ppt">
-            <i class="el-icon-s-platform" />
-            <span>PPT课件</span>
-          </el-menu-item>
-          <el-menu-item index="homework">
-            <i class="el-icon-edit" />
-            <span>课后作业</span>
-          </el-menu-item>
-          <el-menu-item index="comment">
-            <i class="el-icon-s-comment" />
-            <span>作业情况</span>
-          </el-menu-item>
-          <el-menu-item index="exam">
-            <i class="el-icon-document" />
-            <span>历年试卷</span>
-          </el-menu-item>
-          <el-menu-item index="mindmap">
-            <i class="el-icon-s-opportunity" />
-            <span>思维导图</span>
-          </el-menu-item>
-          <el-menu-item index="other">
-            <i class="el-icon-position" />
-            <span>其它</span>
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
-      <el-main>
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item>{{ rootDir }}</el-breadcrumb-item>
-          <el-breadcrumb-item>World</el-breadcrumb-item>
-        </el-breadcrumb>
-        <div class="main">
-          <div v-for="(file, index) in fileList" :key="index">
-            <Folder 
-              v-if="file.type === 'folder'" 
-              class="folder"
-              :folder-name="file.name"
-            />
-            <File 
-              v-if="file.type === 'file'" 
-              class="file"
-              :file-name="file.name"
-            />
-          </div>
-        </div>
-      </el-main>
-    </el-container>
-  </el-container>
+  <div id="filesystem">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item 
+        :to="dirs.length !== 0? {}: undefined"
+        @click.native="handleClick"
+      >
+        {{ rootDir }}
+      </el-breadcrumb-item>
+      <el-breadcrumb-item 
+        v-for="(path, index) in dirs" 
+        :key="index"
+        :to="index !== dirs.length - 1? {} : undefined"
+        @click.native="handleDirClick(index)"
+      >
+        {{ path }}
+      </el-breadcrumb-item>
+      <span role="presentation" class="el-breadcrumb__separator"></span>
+    </el-breadcrumb>
+
+    <div class="main">
+      <div v-for="(file, index) in fileList" :key="index">
+        <Folder 
+          v-if="file.type === 'folder'" 
+          class="folder"
+          :folder-name="file.name"
+          @enterFolder='enterFolder'
+        />
+        <File 
+          v-if="file.type === 'file'" 
+          class="file"
+          :file-name="file.name"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-  .container {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .header {
-    background-color: blue;
-  }
-  .aside {
-    background-color: red;
-  }
   .main {
     padding: 0;
 
@@ -81,7 +45,7 @@
     flex-wrap: wrap;
   }
 
-  .main .folder, .main .file {
+  .folder, .file {
     margin: 30px;
     margin-right: 75px;
   }
@@ -91,6 +55,12 @@
 import File from '../components/File.vue'
 import Folder from '../components/Folder.vue'
 export default {
+  props: {
+    rootDir: {
+      type: String,
+      required: true,
+    }
+  },
   data: () => ({
     fileList: [
       {
@@ -102,13 +72,23 @@ export default {
         name: "MyFile"
       }
     ],
-    rootDir: "pdf",
+    dirs: []
   }),
+  watch: {
+    rootDir: function() {
+      this.dirs = []
+    }
+  },
   methods: {
-    handleSelect(key) {
-      this.rootDir = key;
-      this.$store.commit("increaseCount");
-      console.log(this.$store.state.count);
+    enterFolder(folderName) {
+      console.log(folderName);
+      this.dirs.push(folderName);
+    },
+    handleClick(e) {
+      console.log(e);
+    },
+    handleDirClick(index) {
+      console.log(this.dirs[index]);
     }
   },
   
