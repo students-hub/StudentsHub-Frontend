@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
+import rightMenu from "vue-right-click-menu";
 
 import App from './App.vue';
 import store from './store/index';
@@ -10,6 +11,7 @@ import 'normalize.css';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
+Vue.use(rightMenu);
 Vue.config.productionTip = false;
 
 let router = null;
