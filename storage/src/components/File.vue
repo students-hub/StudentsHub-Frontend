@@ -46,32 +46,41 @@ export default {
       const obj = {
         this: this,
         text: [
-          "查看资料",
-          { content: "复制用户id", status: true },
-          "移除该会话",
-          "在联系人中查看",
-          "在单聊窗口中打开",
-          "会话置顶"
+          "打开",
+          "下载",
+          "另存为",
+          "删除",
+          "重命名",
+          "属性",
         ],
         handler: {
-          checkingData(parameter) {
+          handleOpen: () => {
+            console.log("打开文件");
+          },
+          handleDownload: (parameter) => {
             console.log(parameter);
-            console.log("查看资料点击事件");
+            console.log("下载文件");
           },
-          copyId() {
-            console.log("复制用户id点击事件");
+          handleSaveAs: () => {
+            console.log("保存文件");
           },
-          removeItem() {
-            console.log("移除会话点击事件");
+          handleDelete: () => {
+            console.log("删除文件");
           },
-          showContact() {
-            console.log("在联系人中查看");
+          handleRename: () => {
+            this.$prompt('请输入文件名', '重命名', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+            }).then(({ value }) => {
+              this.$message({
+                type: 'success',
+                message: "文件名修改成功"
+              });
+              this.fileName = value;
+            }).catch(() => {});
           },
-          showSingleChat() {
-            console.log("在单聊窗口中打开");
-          },
-          topConversation() {
-            console.log("会话置顶");
+          handleProperty: () => {
+            console.log("显示属性");
           }
         }
       };
