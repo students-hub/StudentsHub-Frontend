@@ -1,16 +1,20 @@
-import './public-path';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './App.vue';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import 'normalize.css'
-Vue.use(ElementUI)
 
+import App from './App.vue';
+import store from './store/index';
+
+import './public-path';
+import 'normalize.css';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
 let router = null;
 let instance = null;
+
 function render(props = {}) {
   const { container } = props;
   router = new VueRouter({
@@ -20,6 +24,7 @@ function render(props = {}) {
 
   instance = new Vue({
     router,
+    store,
     render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : '#app');
 }

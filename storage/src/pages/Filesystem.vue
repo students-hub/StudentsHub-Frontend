@@ -105,9 +105,10 @@ export default {
     rootDir: "pdf",
   }),
   methods: {
-    handleSelect(key, path) {
+    handleSelect(key) {
       this.rootDir = key;
-      console.log(path);
+      this.$store.commit("increaseCount");
+      console.log(this.$store.state.count);
     }
   },
   
