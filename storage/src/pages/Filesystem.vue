@@ -56,6 +56,7 @@ import File from '../components/File.vue';
 import Folder from '../components/Folder.vue';
 
 import { list2Path } from '../utils';
+import { setFileList } from '../services/request';
 
 export default {
   props: {
@@ -71,32 +72,26 @@ export default {
   watch: {
     rootDir: function() {
       this.dirs = [];
-      this.$http.get('/fs', { data: { path: '/' + this.rootDir }})
-        .then(({ data }) => this.files = data);
+      setFileList.call(this, '/' + this.rootDir);
     },
   },
   mounted: function() {
-    this.$http.get('/fs', { data: { path: '/' + this.rootDir }})
-      .then(({ data }) => this.files = data);
+    setFileList.call(this, '/' + this.rootDir);
   },
   methods: {
     enterFolder(folderName) {
       this.dirs.push(folderName);
       const targetPath = '/' + this.rootDir + list2Path(this.dirs);
-      this.$http.get('/fs', { data: { path: targetPath }})
-        .then(({ data }) => this.files = data);
+      setFileList.call(this, targetPath);
     },
     handleClick() {
-      const targetPath = '/' + this.rootDir;
-      this.$http.get('/fs', { data: { path: targetPath }})
-        .then(({ data }) => this.files = data);
+      setFileList.call(this, '/' + this.rootDir);
       this.dirs = [];
     },
     handleDirClick(index) {
       this.dirs = this.dirs.slice(0, index + 1);
       const targetPath = '/' + this.rootDir + list2Path(this.dirs);
-      this.$http.get('/fs', { data: { path: targetPath }})
-        .then(({ data }) => this.files = data);
+      setFileList.call(this, targetPath);
     }
   },
   

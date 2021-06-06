@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-let instance = axios.create({
+export default axios.create({
   baseURL: '',
   timeout: 10000,
 });
 
-export default instance;
+export function setFileList(path) {
+  this.$http.get('/fs', { data: { path }})
+    .then(({ data }) => this.files = data);
+}

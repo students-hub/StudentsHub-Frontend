@@ -37,10 +37,11 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main>
+      <el-main id="main">
         <Filesystem 
           :rootDir="rootDir"
         />
+        <div class="background">Hello</div>
       </el-main>
     </el-container>
   </el-container>
@@ -57,6 +58,19 @@
   }
   .aside {
     background-color: red;
+  }
+
+  #main {
+    position: relative;
+  }
+  .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
   }
 </style>
 
