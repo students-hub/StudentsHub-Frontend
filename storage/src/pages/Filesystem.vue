@@ -54,24 +54,19 @@
 <script>
 import File from '../components/File.vue'
 import Folder from '../components/Folder.vue'
+
 export default {
   props: {
     rootDir: {
       type: String,
       required: true,
+    },
+    fileList: {
+      type: Array,
+      required: true
     }
   },
   data: () => ({
-    fileList: [
-      {
-        type: "folder",
-        name: "MyFolder" 
-      },
-      {
-        type: "file",
-        name: "MyFile"
-      }
-    ],
     dirs: []
   }),
   watch: {

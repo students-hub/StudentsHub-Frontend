@@ -32,6 +32,8 @@
 </style>
 
 <script>
+import axios from '../services/request';
+
 export default {
   props: {
     fileName: {
@@ -89,7 +91,10 @@ export default {
   },
   methods: {
     onClick() {
-      console.log("click file");
+      axios({
+        method: 'get',
+        url: '/test',
+      }).then(({data}) => console.log(data));
     }
   }
 }

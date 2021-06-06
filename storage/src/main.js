@@ -7,6 +7,7 @@ import App from './App.vue';
 import store from './store/index';
 
 import './public-path';
+import './mock/category';
 import 'normalize.css';
 import 'element-ui/lib/theme-chalk/index.css';
 

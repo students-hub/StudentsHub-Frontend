@@ -38,7 +38,10 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <Filesystem :rootDir="rootDir" />
+        <Filesystem 
+          :rootDir="rootDir"
+          :file-list="fileList"
+        />
       </el-main>
     </el-container>
   </el-container>
@@ -59,17 +62,30 @@
 </style>
 
 <script>
+import axios from '../services/request';
 import Filesystem from './Filesystem.vue';
+
 export default {
   data: () => ({
+    fileList: [],
     rootDir: "pdf",
   }),
+  mounted() {
+    axios({
+      method: 'get',
+      url: '/pdf',
+    }).then(({ data }) => this.fileList = data);
+  },
   methods: {
     handleSelect(key) {
       this.rootDir = key;
-      console.log(this.rootDir);
-      this.$store.commit("increaseCount");
-      console.log(this.$store.state.count);
+
+      axios({
+        method: 'get',
+        url: '/' + this.rootDir,
+      }).then(({ data }) => this.fileList = data);
+      // this.$store.commit("increaseCount");
+      // console.log(this.$store.state.count);
     }
   },
   components: {
