@@ -19,7 +19,7 @@
     </el-breadcrumb>
 
     <div class="main">
-      <div v-for="(file, index) in fileList" :key="index">
+      <div v-for="(file, index) in files" :key="index">
         <Folder 
           v-if="file.type === 'folder'" 
           class="folder"
@@ -52,32 +52,56 @@
 </style>
 
 <script>
-import File from '../components/File.vue'
-import Folder from '../components/Folder.vue'
+import { list2Path } from '../utils';
+import axios from '../services/request';
+import File from '../components/File.vue';
+import Folder from '../components/Folder.vue';
 
 export default {
   props: {
     rootDir: {
       type: String,
       required: true,
-    },
-    fileList: {
-      type: Array,
-      required: true
     }
   },
   data: () => ({
-    dirs: []
+    dirs: [],
+    files: [],
   }),
   watch: {
     rootDir: function() {
-      this.dirs = []
-    }
+      this.dirs = [];
+
+      axios({
+        method: 'get',
+        url: '/fs',
+        data: {
+          path: '/' + this.rootDir,
+        }
+      }).then(({ data }) => this.files = data);
+    },
+  },
+  mounted() {
+    axios({
+      method: 'get',
+      url: '/fs',
+      data: {
+        path: '/' + this.rootDir,
+      }
+    }).then(({ data }) => this.files = data);
   },
   methods: {
     enterFolder(folderName) {
-      console.log(folderName);
       this.dirs.push(folderName);
+      const targetPath = '/' + this.rootDir + list2Path(this.dirs);
+      console.log(targetPath);
+      axios({
+        method: 'get',
+        url: '/fs',
+        data: {
+          path: targetPath
+        }
+      }).then(({ data }) => this.files = data);
     },
     handleClick(e) {
       console.log(e);

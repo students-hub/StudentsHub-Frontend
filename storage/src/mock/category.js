@@ -1,5 +1,3 @@
-import Mock from 'mockjs'
-
 const pdfFiles = [
   {
     type: 'folder',
@@ -81,10 +79,12 @@ const otherFiles = [
   }
 ];
 
-Mock.mock('/pdf','get', pdfFiles);
-Mock.mock('/ppt','get', pptFiles);
-Mock.mock('/homework', 'get', homeworkFiles);
-Mock.mock('/comment', 'get', commentFiles);
-Mock.mock('/exam', 'get', examFiles);
-Mock.mock('/mindmap', 'get', mindmapFiles);
-Mock.mock('/other', 'get', otherFiles);
+export default {
+  pdfFiles,
+  pptFiles,
+  homeworkFiles,
+  commentFiles,
+  examFiles,
+  mindmapFiles,
+  otherFiles,
+};
