@@ -52,10 +52,10 @@
 </style>
 
 <script>
-import { list2Path } from '../utils';
-import axios from '../services/request';
 import File from '../components/File.vue';
 import Folder from '../components/Folder.vue';
+
+import { list2Path } from '../utils';
 
 export default {
   props: {
@@ -71,37 +71,20 @@ export default {
   watch: {
     rootDir: function() {
       this.dirs = [];
-
-      axios({
-        method: 'get',
-        url: '/fs',
-        data: {
-          path: '/' + this.rootDir,
-        }
-      }).then(({ data }) => this.files = data);
+      this.$http.get('/fs', { data: { path: '/' + this.rootDir }})
+        .then(({ data }) => this.files = data);
     },
   },
   mounted() {
-    axios({
-      method: 'get',
-      url: '/fs',
-      data: {
-        path: '/' + this.rootDir,
-      }
-    }).then(({ data }) => this.files = data);
+    this.$http.get('/fs', { data: { path: '/' + this.rootDir }})
+      .then(({ data }) => this.files = data);
   },
   methods: {
     enterFolder(folderName) {
       this.dirs.push(folderName);
       const targetPath = '/' + this.rootDir + list2Path(this.dirs);
-      console.log(targetPath);
-      axios({
-        method: 'get',
-        url: '/fs',
-        data: {
-          path: targetPath
-        }
-      }).then(({ data }) => this.files = data);
+      this.$http.get('/fs', { data: { path: targetPath }})
+        .then(({ data }) => this.files = data);
     },
     handleClick(e) {
       console.log(e);
