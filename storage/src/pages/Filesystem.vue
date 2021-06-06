@@ -75,7 +75,7 @@ export default {
         .then(({ data }) => this.files = data);
     },
   },
-  mounted() {
+  mounted: function() {
     this.$http.get('/fs', { data: { path: '/' + this.rootDir }})
       .then(({ data }) => this.files = data);
   },
@@ -86,11 +86,17 @@ export default {
       this.$http.get('/fs', { data: { path: targetPath }})
         .then(({ data }) => this.files = data);
     },
-    handleClick(e) {
-      console.log(e);
+    handleClick() {
+      const targetPath = '/' + this.rootDir;
+      this.$http.get('/fs', { data: { path: targetPath }})
+        .then(({ data }) => this.files = data);
+      this.dirs = [];
     },
     handleDirClick(index) {
-      console.log(this.dirs[index]);
+      this.dirs = this.dirs.slice(0, index + 1);
+      const targetPath = '/' + this.rootDir + list2Path(this.dirs);
+      this.$http.get('/fs', { data: { path: targetPath }})
+        .then(({ data }) => this.files = data);
     }
   },
   
