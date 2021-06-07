@@ -32,6 +32,10 @@ document.body.addEventListener('click', () => {
   removeNodeIfExist('context-menu');
 })
 
+document.body.addEventListener('contextmenu', () => {
+  removeNodeIfExist('context-menu');
+})
+
 Vue.directive('contextMenu', (el, binding) => {
   if (!el) {
     throw '元素未绑定!';
