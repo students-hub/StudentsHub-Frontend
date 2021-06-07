@@ -26,7 +26,7 @@ const homeworkFiles = [
     name: 'MyWord',
   },
   {
-    type: 'txt',
+    type: 'text',
     name: 'MyTXT',
   }
 ];
@@ -74,7 +74,7 @@ const otherFiles = [
     name: 'OtherFolder',
   },
   {
-    type: 'file',
+    type: 'image',
     name: 'OtherFile',
   }
 ];
