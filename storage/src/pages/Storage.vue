@@ -51,10 +51,10 @@
   }
 
   .header {
-    background-color: blue;
+    background-color: #0050b3;
   }
   .aside {
-    background-color: red;
+    background-color: #DCDFE6;
   }
 </style>
 
