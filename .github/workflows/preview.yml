@@ -43,6 +43,9 @@ jobs:
       #   with:
       #     branch: gh-pages
       #     folder: dist
+      - name: Remove chaos
+        run: |
+          mkdir dist/fonts && mv dist/child/vue/fonts/* dist/fonts/
       - name: Push dist folder to students-hub.github.io
         uses: cpina/github-action-push-to-another-repository@v1.3
         env:
