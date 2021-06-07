@@ -11,7 +11,7 @@
       <img v-else-if="type === 'txt'"   src="~@/assets/txt.png">
       <img v-else-if="type === 'video'" src="~@/assets/video.png">
       <img v-else-if="type === 'audio'" src="~@/assets/audio.png">
-      <img v-else-if="type === 'image'" src="~@/assets/img.png">
+      <img v-else-if="type === 'image'" :src="imageURL">
       <img v-else src="~@/assets/file.png">
       <span class="icons">
         <span>
@@ -114,6 +114,9 @@ export default {
   computed: {
     fullPath() {
       return this.parentDir + this.fileName;
+    },
+    imageURL() {
+      return getFileAddr('go-api-proj', this.fullPath);
     },
     menuObj() {
       return [{

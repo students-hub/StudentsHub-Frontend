@@ -24,7 +24,9 @@
           v-if="file.type === 'folder'" 
           class="folder"
           :folder-name="file.name"
+          :parentDir="fullPath"
           @enterFolder='enterFolder'
+          @refresh='refreshFolder'
         />
         <File 
           v-else
@@ -114,7 +116,7 @@ import File from '../components/File.vue';
 import Folder from '../components/Folder.vue';
 
 import { list2Path } from '../utils/array';
-import { setFileList, uploadFile } from '../services/fs';
+import { setFileList, uploadFile, createFolder } from '../services/fs';
 
 export default {
   props: {
@@ -143,16 +145,17 @@ export default {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
           }).then(({ value }) => {
+            createFolder.call(this, 'go-api-proj', this.fullPath + value);
+            this.refreshFolder();
             this.$message({
               type: 'success',
               message: "新建文件夹成功"
             });
-            console.log(value);
           }).catch(() => {});
         },
       }, {
         title: '刷新',
-        handler: () => console.log('刷新'),
+        handler: this.refreshFolder,
       }]
     },
     fullPath() {

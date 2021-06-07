@@ -11,11 +11,11 @@
         <span>
           <i class="el-icon-zoom-in icon"></i>
         </span>
-        <span >
-          <i class="el-icon-download icon"></i>
-        </span>
         <span>
-          <i class="el-icon-delete icon"></i>
+          <i 
+            class="el-icon-delete icon"
+            @click="handleDelelteFolder"
+          ></i>
         </span>
       </span>
     </div>
@@ -83,9 +83,15 @@
 </style>
 
 <script>
+import { deleteFolder, renameFolder } from '../services/fs';
+
 export default {
   props: {
     folderName: {
+      type: String,
+      required: true,
+    },
+    parentDir: {
       type: String,
       required: true,
     }
@@ -93,25 +99,38 @@ export default {
   data: () => ({
   }),
   computed: {
+    fullPath() {
+      return this.parentDir + this.folderName;
+    },
     menuObj() {
       return [{
         title: '打开',
         handler: () => console.log('打开'),
       }, {
         title: '删除',
-        handler: () => console.log(this.folderName),
+        handler: () => {
+          console.log(this.fullPath);
+          deleteFolder.call(this, 'go-api-proj', this.fullPath);
+          // this.$emit('refresh');
+        },
       }, {
         title: '重命名',
         handler: () => {
-          this.$prompt('请输入文件名', '重命名', {
+          this.$prompt('请输入文件夹名', '重命名', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
           }).then(({ value }) => {
+            renameFolder.call(
+              this,
+              'go-api-proj', 
+              this.fullPath + '/',
+              this.parentDir + value + '/'
+            );
+            this.$emit('refresh');
             this.$message({
               type: 'success',
               message: "文件名修改成功"
             });
-            this.fileName = value;
           }).catch(() => {});
         },
       }, {
@@ -127,6 +146,9 @@ export default {
     },
     handleContextMenu(e) {
       e.stopPropagation();
+    },
+    handleDelelteFolder() {
+      console.log(this.fullPath);
     }
   }
 }

@@ -17,11 +17,18 @@ export function setFileList(path) {
 }
 
 export function deleteFileByAddr(bucketName, fullPath) {
-  this.$http.delete('/v1/FileSystem/delete',  { data: { bucketName: bucketName, fileName: fullPath }});
+  this.$http.delete('/v1/FileSystem/delete', 
+    {
+      data: { 
+        bucketName: bucketName, 
+        fileName: fullPath
+    }
+  });
 } 
 
 export function renameFile(bucketName, oldfileName, newfileName) {
-  this.$http.post('/v1/FileSystem/Rename/' + bucketName, { oldfileName, newfileName });
+  this.$http.post('/v1/FileSystem/Rename/' + bucketName, 
+    { oldfileName, newfileName });
 }
 
 export function uploadFile(bucketname, file, dirPath) {
@@ -31,4 +38,17 @@ export function uploadFile(bucketname, file, dirPath) {
   formData.append('filePath', dirPath);
 
   this.$http.post('/v1/FileSystem/uploadfile', formData);
+}
+
+export function createFolder(bucketname, fullDirPath) {
+  this.$http.post('/v1/FileSystem/CreateFolder/' + bucketname, { dirName: fullDirPath });
+}
+
+export function deleteFolder(bucketName, fullDirPath) {
+  this.$http.delete('/v1/FileSystem/DeleteFolder/' + bucketName,  { data: { dirName: fullDirPath + '/' } } );
+}
+
+export function renameFolder(bucketName, olddirName, newdirName) {
+  this.$http.post('/v1/FileSystem/RenameFolder/' + bucketName, 
+    { olddirName, newdirName });
 }
