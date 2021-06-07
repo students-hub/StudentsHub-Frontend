@@ -16,7 +16,6 @@
     "normalize.css": "^8.0.1",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
-    "vue-right-click-menu": "^1.1.1",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
