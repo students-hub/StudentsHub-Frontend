@@ -1,12 +1,15 @@
 <template>
-  <div class="file" @click="onClick"  v-right-click:[{id:19,bookid:1024}]="rightMenuObj">
+  <div 
+    id="file"
+    v-contextMenu="menuObj"
+  >
     <img src="~@/assets/file.png">
     <span>{{ fileName }}</span>
   </div>
 </template>
 
 <style scoped>
-  .file {
+  #file {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -32,8 +35,6 @@
 </style>
 
 <script>
-import axios from '../services/request';
-
 export default {
   props: {
     fileName: {
@@ -41,61 +42,43 @@ export default {
       required: true
     }
   },
-  data: () => ({}),
+  data: () => ({
+
+  }),
   computed: {
-    rightMenuObj() {
-      // 右键菜单对象，菜单内容和处理事件
-      const obj = {
-        this: this,
-        text: [
-          "打开",
-          "下载",
-          "另存为",
-          "删除",
-          "重命名",
-          "属性",
-        ],
-        handler: {
-          handleOpen: () => {
-            console.log("打开文件");
-          },
-          handleDownload: (parameter) => {
-            console.log(parameter);
-            console.log("下载文件");
-          },
-          handleSaveAs: () => {
-            console.log("保存文件");
-          },
-          handleDelete: () => {
-            console.log("删除文件");
-          },
-          handleRename: () => {
-            this.$prompt('请输入文件名', '重命名', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-            }).then(({ value }) => {
-              this.$message({
-                type: 'success',
-                message: "文件名修改成功"
-              });
-              this.fileName = value;
-            }).catch(() => {});
-          },
-          handleProperty: () => {
-            console.log("显示属性");
-          }
-        }
-      };
-      return obj;
+    menuObj() {
+      return [{
+        title: '打开',
+        handler: () => console.log('打开'),
+      }, {
+        title: '下载',
+        handler: () => console.log('下载文件'),
+      }, {
+        title: '另存为',
+        handler: () => console.log('另存为'),
+      }, {
+        title: '删除',
+        handler: () => console.log(this.folderName),
+      }, {
+        title: '重命名',
+        handler: () => {
+          this.$prompt('请输入文件名', '重命名', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+          }).then(({ value }) => {
+            this.$message({
+              type: 'success',
+              message: "文件名修改成功"
+            });
+            this.fileName = value;
+          }).catch(() => {});
+        },
+      }, {
+        title: '属性',
+        handler: () => console.log('属性'),
+      }]
     }
   },
-  methods: {
-    onClick() {
-      axios({
-        method: 'get',
-        url: '/test',
-      }).then(({data}) => console.log(data));
-    }
-  }
+  methods: {}
 }
 </script>
