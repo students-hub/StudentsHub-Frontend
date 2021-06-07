@@ -1,12 +1,25 @@
-import './public-path';
 import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
+import ElementUI from 'element-ui';
+
 import App from './App.vue';
 
+import './public-path';
+// import './mock';
+import './filters/wrapPath';
+import './directives/context-menu';
+import 'normalize.css';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 let router = null;
 let instance = null;
+
 function render(props = {}) {
   const { container } = props;
   router = new VueRouter({
