@@ -98,12 +98,6 @@ export default {
         title: '打开',
         handler: () => console.log('打开'),
       }, {
-        title: '下载',
-        handler: () => console.log('下载文件'),
-      }, {
-        title: '另存为',
-        handler: () => console.log('另存为'),
-      }, {
         title: '删除',
         handler: () => console.log(this.folderName),
       }, {

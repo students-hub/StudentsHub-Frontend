@@ -117,9 +117,6 @@ export default {
     },
     menuObj() {
       return [{
-        title: '打开',
-        handler: () => console.log('打开'),
-      }, {
         title: '下载',
         handler: () => window.open(getFileAddr('go-api-proj', this.fullPath))
       }, {
