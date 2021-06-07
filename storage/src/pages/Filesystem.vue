@@ -30,7 +30,9 @@
           v-else
           class="file"
           :file-name="file.name"
+          :parentDir="fullPath"
           :type="file.type"
+          @refresh='refreshFolder'
         />
       </div>
       <div class="uploadArea" @click="uploadFormVisiable=true">
@@ -45,16 +47,18 @@
     >
       <el-upload
         drag
+        action=""
         class="upload"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
+        multiple
+        :on-change="handleFileChange"
+      >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
       <div slot="footer" class="dialog-footer">
         <el-button @click="uploadFormVisiable = false">取 消</el-button>
-        <el-button type="primary" @click="uploadFormVisiable = false">确 定</el-button>
+        <el-button type="primary" @click="handleSubmit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -110,7 +114,7 @@ import File from '../components/File.vue';
 import Folder from '../components/Folder.vue';
 
 import { list2Path } from '../utils/array';
-import { setFileList } from '../services/fs';
+import { setFileList, uploadFile } from '../services/fs';
 
 export default {
   props: {
@@ -122,6 +126,7 @@ export default {
   data: () => ({
     dirs: [],
     files: [],
+    upLoadFile: null,
     uploadFormVisiable: false,
   }),
   computed: {
@@ -149,31 +154,53 @@ export default {
         title: '刷新',
         handler: () => console.log('刷新'),
       }]
+    },
+    fullPath() {
+      let result = this.rootDir + '/';
+      this.dirs.forEach(path => {
+        result += (path + '/');
+      });
+      return result;
     }
   },
   watch: {
     rootDir: function() {
       this.dirs = [];
-      setFileList.call(this, '/' + this.rootDir);
+      setFileList.call(this, this.rootDir + '/');
     },
   },
   mounted: function() {
-    setFileList.call(this, '/' + this.rootDir);
+    setFileList.call(this, this.rootDir + '/');
   },
   methods: {
     enterFolder(folderName) {
       this.dirs.push(folderName);
-      const targetPath = '/' + this.rootDir + list2Path(this.dirs);
+      const targetPath = this.rootDir + list2Path(this.dirs) + '/';
       setFileList.call(this, targetPath);
     },
     handleClick() {
-      setFileList.call(this, '/' + this.rootDir);
+      setFileList.call(this, this.rootDir + '/');
       this.dirs = [];
     },
     handleDirClick(index) {
       this.dirs = this.dirs.slice(0, index + 1);
-      const targetPath = '/' + this.rootDir + list2Path(this.dirs);
+      const targetPath = this.rootDir + list2Path(this.dirs) + '/';
       setFileList.call(this, targetPath);
+    },
+    handleFileChange(file) {
+      console.log(file.raw);
+      this.upLoadFile = file.raw;
+    },
+    handleSubmit() {
+      this.uploadFormVisiable = false;
+      uploadFile.call(this, 'go-api-proj', this.upLoadFile, this.fullPath);
+      this.refreshFolder();
+    },
+    refreshFolder() {
+      setTimeout(() => {
+        setFileList.call(this, this.rootDir + '/');
+      }, 300);
+     // this.$forceUpdate();
     }
   },
   

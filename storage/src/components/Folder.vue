@@ -5,8 +5,21 @@
     @contextmenu="handleContextMenu"
     v-contextMenu="menuObj"
   >
-    <img src="~@/assets/folder.png">
-    <span>{{ folderName }}</span>
+    <div class="wrapper">
+      <img src="~@/assets/folder.png">
+      <span class="icons">
+        <span>
+          <i class="el-icon-zoom-in icon"></i>
+        </span>
+        <span >
+          <i class="el-icon-download icon"></i>
+        </span>
+        <span>
+          <i class="el-icon-delete icon"></i>
+        </span>
+      </span>
+    </div>
+    <span class="foldername">{{ folderName }}</span>
   </div>
 </template>
 
@@ -26,13 +39,46 @@
     cursor: pointer;
   }
 
-  span:hover {
-    color: blue;
+  .wrapper {
+    position: relative;
+  }
+
+  .foldername:hover {
+    color: #409EFF;
     text-decoration: underline;
   }
 
-  span {
+  .foldername {
     margin-top: 20px;
+  }
+  .icons {
+    opacity: 0;
+    background-color: rgba(0,0,0,.5);
+    transition: opacity .3s;
+
+    position: absolute;
+    top: -10px;
+    left: -8px;
+    height: 110%;
+    width: 110%;
+    border-radius: 5%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .icons:hover {
+    opacity: 1;
+  }
+
+  .icon {
+    color: #fff;
+    font-size: 1.4em;
+  }
+  .icon:hover {
+    color: #409EFF;
+    cursor: pointer;
   }
 </style>
 
