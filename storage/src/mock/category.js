@@ -4,7 +4,7 @@ const pdfFiles = [
     name: 'MyFolder',
   },
   {
-    type: 'file',
+    type: 'pdf',
     name: 'YouFile',
   }
 ];
@@ -15,19 +15,19 @@ const pptFiles = [
     name: 'Folder1',
   },
   {
-    type: 'folder',
-    name: 'Folder2',
+    type: 'ppt',
+    name: 'pptFile',
   },
 ];
 
 const homeworkFiles = [
   {
-    type: 'file',
-    name: 'YouFile',
+    type: 'word',
+    name: 'MyWord',
   },
   {
-    type: 'file',
-    name: 'YouFile',
+    type: 'txt',
+    name: 'MyTXT',
   }
 ];
 
@@ -37,8 +37,8 @@ const commentFiles = [
     name: 'MyFolder',
   },
   {
-    type: 'file',
-    name: 'YouFile',
+    type: 'excel',
+    name: 'MyExcel',
   },
   {
     type: 'file',
@@ -52,8 +52,8 @@ const examFiles = [
     name: 'examFolder',
   },
   {
-    type: 'file',
-    name: 'examFile',
+    type: 'audio',
+    name: 'myAudio',
   }
 ];
 
@@ -63,8 +63,8 @@ const mindmapFiles = [
     name: 'mindmapFolder',
   },
   {
-    type: 'file',
-    name: 'mindmapFile',
+    type: 'video',
+    name: 'myVideo',
   }
 ];
 

@@ -3,7 +3,15 @@
     id="file"
     v-contextMenu="menuObj"
   >
-    <img src="~@/assets/file.png">
+    <img v-if="type === 'word'"       src="~@/assets/word.png">
+    <img v-else-if="type === 'ppt'"   src="~@/assets/ppt.png">
+    <img v-else-if="type === 'excel'" src="~@/assets/excel.png">
+    <img v-else-if="type === 'pdf'"   src="~@/assets/pdf.png">
+    <img v-else-if="type === 'txt'"   src="~@/assets/txt.png">
+    <img v-else-if="type === 'video'" src="~@/assets/video.png">
+    <img v-else-if="type === 'audio'" src="~@/assets/audio.png">
+    <img v-else-if="type === 'img'"   src="~@/assets/img.png">
+    <img v-else src="~@/assets/file.png"> 
     <span>{{ fileName }}</span>
   </div>
 </template>
@@ -37,6 +45,10 @@
 <script>
 export default {
   props: {
+    type: {
+      type: String,
+      required: true
+    },
     fileName: {
       type: String,
       required: true

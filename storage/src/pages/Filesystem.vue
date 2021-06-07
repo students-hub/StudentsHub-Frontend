@@ -27,9 +27,10 @@
           @enterFolder='enterFolder'
         />
         <File 
-          v-if="file.type === 'file'" 
+          v-else
           class="file"
           :file-name="file.name"
+          :type="file.type"
         />
       </div>
       <div class="uploadArea" @click="uploadFormVisiable=true">
