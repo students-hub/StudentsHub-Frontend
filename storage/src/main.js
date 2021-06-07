@@ -5,7 +5,6 @@ import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
 
 import App from './App.vue';
-import store from './store/index';
 
 import './public-path';
 // import './mock';
@@ -30,7 +29,6 @@ function render(props = {}) {
 
   instance = new Vue({
     router,
-    store,
     render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : '#app');
 }
