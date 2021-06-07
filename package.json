@@ -7,8 +7,8 @@
     "predev": "npm install --dev && cd login && npm install --dev && cd ../ && cd storage && npm install --dev && cd ../ && cd dashboard && npm install --dev && cd ../",
     "dev": "mkdir dist && mkdir dist\\child && cd login && npm run dev && cd ../storage && npm run dev &&cd ../dashboard && npm run dev",
     "serve": "echo \"In order to better watch the compiler's output, you should run 'npm run serve' in each micro application.\"",
-    "prebuild": "cd login && npm install && cd ../ && cd storage && npm install && cd ../",
-    "build": "mkdir dist && mkdir dist/child && cd login && npm run build && cd ../storage && npm run build"
+    "prebuild": "cd login && npm install && cd ../ && cd storage && npm install && cd ../ && cd dashboard && npm install",
+    "build": "mkdir dist && mkdir dist/child && cd login && npm run build && cd ../storage && npm run build && cd ../dashboard && npm run build"
   },
   "repository": {
     "type": "git",

@@ -20,6 +20,8 @@ jobs:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Setup node env
         uses: actions/setup-node@v1
       - name: Get npm cache directory

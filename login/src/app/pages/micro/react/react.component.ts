@@ -13,7 +13,7 @@ export class ReactComponent implements OnInit, OnDestroy {
     this.zone.run(() => {
       this.microApp = loadMicroApp({
         name: 'react app for dashboard',
-        entry: environment.production? '/child/vue/' : '//localhost:3000/child/vue/',
+        entry: environment.production? '/child/react/' : '//localhost:3001/child/react/',
         container: '#react',
       });
     })
