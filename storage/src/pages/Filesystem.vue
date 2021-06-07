@@ -32,6 +32,9 @@
           :file-name="file.name"
         />
       </div>
+      <div class="uploadArea" @click="uploadFormVisiable=true">
+        <i class="el-icon-plus avatar-uploader-icon"></i>
+      </div>
     </div>
 
     <el-dialog
@@ -70,7 +73,7 @@
     flex-wrap: wrap;
   }
 
-  .folder, .file {
+  .folder, .file, .uploadArea{
     margin: 30px;
     margin-right: 75px;
   }
@@ -78,6 +81,26 @@
   .upload {
     width: 350px;
     margin: 0 auto;
+  }
+
+  .uploadArea {
+    width: 160px;
+    height: 170px;
+
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .uploadArea:hover {
+    border-color: #409EFF;
+  }
+  .uploadArea > i {
+    font-size: 28px;
+    color: #8c939d;
+    width: 160px;
+    height: 170px;
+    line-height: 170px;
+    text-align: center;
   }
 </style>
 
