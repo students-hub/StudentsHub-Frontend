@@ -55,7 +55,7 @@
 import File from '../components/File.vue';
 import Folder from '../components/Folder.vue';
 
-import { list2Path } from '../utils';
+import { list2Path } from '../utils/array';
 import { setFileList } from '../services/request';
 
 export default {
