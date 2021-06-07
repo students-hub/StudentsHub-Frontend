@@ -37,7 +37,7 @@
   
 </template>
 
-<style lang="css">
+<style>
   .container {
     width: 500px;
     padding: 20px 20px 0 20px;

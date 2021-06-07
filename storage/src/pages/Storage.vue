@@ -38,9 +38,7 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <Filesystem 
-          :rootDir="rootDir"
-        />
+        <Filesystem :rootDir="rootDir"/>
       </el-main>
     </el-container>
   </el-container>
@@ -67,6 +65,7 @@ export default {
   data: () => ({
     rootDir: "pdf",
   }),
+  
   methods: {
     handleSelect(key) {
       this.rootDir = key;

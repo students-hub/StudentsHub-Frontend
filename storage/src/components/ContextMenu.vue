@@ -19,7 +19,7 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  width: 250px;
+  width: 175px;
   z-index: 999999;
 
   background: #FAFAFA;
