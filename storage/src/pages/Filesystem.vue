@@ -56,7 +56,7 @@
       >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+        <div class="el-upload__tip" slot="tip">文件大小不超过500kb</div>
       </el-upload>
       <div slot="footer" class="dialog-footer">
         <el-button @click="uploadFormVisiable = false">取 消</el-button>
@@ -191,7 +191,6 @@ export default {
       setFileList.call(this, targetPath);
     },
     handleFileChange(file) {
-      console.log(file.raw);
       this.upLoadFile = file.raw;
     },
     handleSubmit() {
@@ -201,9 +200,8 @@ export default {
     },
     refreshFolder() {
       setTimeout(() => {
-        setFileList.call(this, this.rootDir + '/');
+        setFileList.call(this, this.fullPath);
       }, 300);
-     // this.$forceUpdate();
     }
   },
   

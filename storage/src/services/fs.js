@@ -11,7 +11,6 @@ export function getFileAddr(bucketName, fullPath) {
 export function setFileList(path) {
   this.$http.post('/v1/FileSystem/getFileWithPrefix/go-api-proj/', { prefix: path })
     .then(({ data }) => {
-      console.log(data);
       this.files = data;
     });
 }

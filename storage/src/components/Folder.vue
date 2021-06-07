@@ -9,7 +9,10 @@
       <img src="~@/assets/folder.png">
       <span class="icons">
         <span>
-          <i class="el-icon-zoom-in icon"></i>
+          <i 
+            class="el-icon-zoom-in icon"
+            @click="handleZoomInFolder"
+          ></i>
         </span>
         <span>
           <i 
@@ -105,13 +108,12 @@ export default {
     menuObj() {
       return [{
         title: '打开',
-        handler: () => console.log('打开'),
+        handler: () => this.$emit('enterFolder', this.folderName),
       }, {
         title: '删除',
         handler: () => {
-          console.log(this.fullPath);
           deleteFolder.call(this, 'go-api-proj', this.fullPath);
-          // this.$emit('refresh');
+          this.$emit('refresh');
         },
       }, {
         title: '重命名',
@@ -147,8 +149,14 @@ export default {
     handleContextMenu(e) {
       e.stopPropagation();
     },
-    handleDelelteFolder() {
-      console.log(this.fullPath);
+    handleZoomInFolder(e) {
+      e.stopPropagation();
+      this.$emit('enterFolder', this.folderName);
+    },
+    handleDelelteFolder(e) {
+      e.stopPropagation()
+      deleteFolder.call(this, 'go-api-proj', this.fullPath);
+      this.$emit('refresh');
     }
   }
 }

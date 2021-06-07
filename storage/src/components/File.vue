@@ -15,16 +15,22 @@
       <img v-else src="~@/assets/file.png">
       <span class="icons">
         <span>
-          <i class="el-icon-zoom-in icon"></i>
+          <i
+            class="el-icon-zoom-in icon"
+            @click="handleDownloadIconClick"
+          ></i>
         </span>
-        <span >
+        <span>
           <i 
             class="el-icon-download icon"
             @click="handleDownloadIconClick"
           ></i>
         </span>
         <span>
-          <i class="el-icon-delete icon"></i>
+          <i 
+            class="el-icon-delete icon"
+            @click="handleDeleteIconClick"
+          ></i>
         </span>
       </span>
     </div>
@@ -127,8 +133,8 @@ export default {
         handler: () => document.execCommand("SaveAs"),
       }, {
         title: '删除',
-        handler: async () => {
-          await deleteFileByAddr.call(this, 'go-api-proj', this.fullPath);
+        handler: () => {
+          deleteFileByAddr.call(this, 'go-api-proj', this.fullPath);
           this.$emit('refresh');
         },
       }, {
@@ -157,6 +163,10 @@ export default {
   methods: {
     handleDownloadIconClick() {
       window.open(getFileAddr('go-api-proj', this.fullPath));
+    },
+    handleDeleteIconClick() {
+      deleteFileByAddr.call(this, 'go-api-proj', this.fullPath);
+      this.$emit('refresh');
     }
   }
 }
