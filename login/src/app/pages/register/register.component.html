@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="header">
+    <h1 class="title">用户注册</h1>
+    <p class="subtitle">开启您的网盘之旅...</p>
+  </div>
+
+  <div class="register">
+    <!-- (ngSubmit) -->
+    <form nz-form [formGroup]="formModel">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="user_name">用户名</nz-form-label>
+        <nz-form-control nzErrorTip="请输入用户名!">
+          <input nz-input formControlName="user_name" id="user_name" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="role" nzRequired>身份</nz-form-label>
+        <nz-form-control nzErrorTip="请选择您的身份!">
+          <nz-select
+            id="role"
+            formControlName="role"
+            nzPlaceHolder="请选择您的身份"
+          >
+            <nz-option nzValue="3" nzLabel="学生"></nz-option>
+            <nz-option nzValue="2" nzLabel="课代表"></nz-option>
+            <nz-option nzValue="1" nzLabel="老师"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
+        <nz-form-control nzErrorTip="请输入密码!">
+          <input nz-input type="password" id="password" formControlName="password"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="confirmPassword" nzRequired>确认密码</nz-form-label>
+        <nz-form-control nzErrorTip="请输入密码!">
+          <input nz-input type="password" id="confirmPassword" formControlName="confirmPassword"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="16" [nzOffset]="6" >
+          <label nz-checkbox formControlName="agree">
+            <span>
+              我已阅读相关<a>协议</a>
+            </span>
+          </label>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <button type="submit" nz-button nzBlock nzType="primary" (click)="onSubmit()">注册</button>
+  </div>
+
+  <div class="footer">
+    <a href="//github.com/students-hub" target="_blank" style="color: rgba(0,0,0,.65);">
+      <i nz-icon nzType="github" nzTheme="outline"></i>
+    </a>
+    <p class="middle">Powered By Qiankun Framework</p>
+    <p>© 2021 students-hub team</p>
+  </div>
+</div>
