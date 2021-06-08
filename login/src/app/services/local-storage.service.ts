@@ -24,4 +24,8 @@ export class LocalStorageService {
     const arr = JSON.stringify(value);
     localStorage.setItem(key, arr);
   }
+
+  public remove(key: string): void {
+    localStorage.removeItem(key);
+  }
 }
