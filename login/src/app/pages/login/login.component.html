@@ -5,9 +5,9 @@
   </div>
   
   <div class="login">
-    <form nz-form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+    <form nz-form [formGroup]="formModel">
       <nz-form-item>
-        <nz-form-control>
+        <nz-form-control nzErrorTip="请输入用户名！">
           <nz-input-group [nzPrefix]="prefixTemplateUser">
             <input type="text" nz-input placeholder="请输入用户名" formControlName="username">
           </nz-input-group>
@@ -18,7 +18,7 @@
       </nz-form-item>
   
       <nz-form-item>
-        <nz-form-control nzErrorTip="请输入正确的密码">
+        <nz-form-control nzErrorTip="请输入密码！">
           <nz-input-group [nzPrefix]="prefixTemplateLock" [nzSuffix]="prefixTemplateVisible">
             <input [type]="passwordVisible? 'text' : 'password'" nz-input placeholder="请输入密码" formControlName="password">
           </nz-input-group>
@@ -46,12 +46,13 @@
               formControlName="isRemember" 
               (ngModelChange)="onCheckRemember()"
             >
-              <span>自动登录</span>
+              <span>记住我</span>
             </label>
             <a class="forget">忘记密码？</a>
           </div>
           <div class="button-wrapper">
-            <button type="submit" nz-button class="login-form-button" nzType="primary" nzBlock>登陆</button>
+            <button type="submit" nz-button class="login-form-button" nzType="primary" nzBlock (click)="onSubmit()">登陆</button>
+            <button nz-button nzBlock routerLink="../register">注册</button>
           </div>
         </nz-form-control>
       </nz-form-item>
